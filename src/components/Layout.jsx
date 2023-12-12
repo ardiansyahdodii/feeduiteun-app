@@ -13,7 +13,6 @@ const Layout = () => {
     const [isOpen, setIsOpen] = useState(false)
 
     function openModal() {
-        alert("DI KLIK")
         setIsOpen(true);
     }
 
