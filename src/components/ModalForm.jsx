@@ -2,9 +2,11 @@ import { useState } from "react"
 import Button from "../elements/Button"
 import FormInput from "../elements/FormInput"
 
-const ModalForm = () => {
+const ModalForm = (props) => {
 
-    const [transaksi, setTransaksi] = useState([])
+    const {dataTransaksi} = props
+
+    // const [transaksi, setTransaksi] = useState([])
     const [formData, setFormData] = useState({
         keperluan: "",
         jumlah: "",
@@ -18,18 +20,29 @@ const ModalForm = () => {
         })
     }
 
-    const handleSimpanTransaksi = (event) => {
+    const handleSubmitTransaksi = (event) => {
         event.preventDefault()
+        if(formData.keperluan === ''|| formData.jumlah === '' || formData.tanggal === ''){
+            alert('Isi semua Data')
+        }else{
+            dataTransaksi(transaksi => [...transaksi, formData])
+            alert('berhasil menambahkan transaksi')
+            setFormData({
+                keperluan: "",
+                jumlah: "",
+                tanggal: "",
+            })
+        }
 
-        setTransaksi(transaksi => [...transaksi, formData])
+        
     }
 
-    console.log(transaksi)
+    // console.log(transaksi)
 
     return (
         <div className="m-5 w-[500px]">
             <form
-                onSubmit={handleSimpanTransaksi}
+                onSubmit={handleSubmitTransaksi}
                 className="flex flex-col justify-center"
             >
                 <FormInput

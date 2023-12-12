@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from 'react-responsive-modal'
 import "react-responsive-modal/styles.css";
 import Button from "../elements/Button"
@@ -10,7 +10,15 @@ import ModalForm from "./ModalForm";
 
 const Layout = () => {
 
+    useEffect(() => {
+    },[])
+
     const [isOpen, setIsOpen] = useState(false)
+    const [transaksi, setTransaksi] = useState([])
+
+    const receiveDataTransaksi = (dataTransaksi) => {
+        setTransaksi(dataTransaksi);
+    };
 
     function openModal() {
         setIsOpen(true);
@@ -20,6 +28,8 @@ const Layout = () => {
     function closeModal() {
         setIsOpen(false);
     }
+
+    console.log(transaksi)
 
     return (
         <div className="flex flex-col justify-center items-center min-h-screen gap-3 mx-96 p-5">
@@ -50,19 +60,22 @@ const Layout = () => {
             </div>
             {/* Isi Ringkasan */}
             <div className="w-full">
-                <Transaksi />
+                {transaksi.map((item, index) => (
+                    <Transaksi key={index} keperluan={item.keperluan} jumlah={item.jumlah} tanggal={item.tanggal}/>
+                ))}
+                
             </div>
 
             {/* Modal */}
             <div>
                 <Modal
-                open={isOpen} onClose={closeModal} center
-            >
-                <ModalForm />
+                    open={isOpen} onClose={closeModal} center
+                >
+                    <ModalForm dataTransaksi={receiveDataTransaksi} />
 
-            </Modal>
+                </Modal>
             </div>
-            
+
 
             {/* <ModalForm isOpen={isOpen} closeModal={closeModal} afterOpenModal={afterOpenModal} /> */}
         </div>
