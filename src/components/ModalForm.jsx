@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Button from "../elements/Button"
-import FormInput from "../elements/FormInput"
+import Form from "../elements/Form"
 
 const ModalForm = (props) => {
 
@@ -8,9 +8,10 @@ const ModalForm = (props) => {
 
     // const [transaksi, setTransaksi] = useState([])
     const [formData, setFormData] = useState({
-        keperluan: "",
+        judul: "",
         jumlah: "",
         tanggal: "",
+        jenis: "" || "pemasukan" || "pengeluaran",
     })
 
     const handleChangeTransaksi = (event) => {
@@ -22,36 +23,42 @@ const ModalForm = (props) => {
 
     const handleSubmitTransaksi = (event) => {
         event.preventDefault()
-        if(formData.keperluan === ''|| formData.jumlah === '' || formData.tanggal === ''){
+        if(formData.keperluan === ''|| formData.jumlah === '' || formData.tanggal === '' || formData.jenis === ''){
             alert('Isi semua Data')
         }else{
             dataTransaksi(transaksi => [...transaksi, formData])
             alert('berhasil menambahkan transaksi')
             setFormData({
-                keperluan: "",
+                judul: "",
                 jumlah: "",
                 tanggal: "",
+                jenis: "",
             })
-        }
-
-        
+        }     
     }
 
     // console.log(transaksi)
 
     return (
         <div className="m-5 w-[500px]">
+            <h1>Tambah Transaksi</h1>
             <form
                 onSubmit={handleSubmitTransaksi}
                 className="flex flex-col justify-center"
             >
-                <FormInput
-                    label="Keperluan"
-                    name="keperluan"
-                    value={formData.keperluan}
+                <Form.Input
+                    label="Judul"
+                    name="judul"
+                    value={formData.judul}
                     onChange={handleChangeTransaksi}
                 />
-                <FormInput
+                <Form.Select
+                    label="Jenis"
+                    name="jenis"
+                    value={formData.jenis}
+                    onChange={handleChangeTransaksi}
+                />
+                <Form.Input
                     label="Jumlah"
                     name="jumlah"
                     type="number"
@@ -59,7 +66,7 @@ const ModalForm = (props) => {
                     onChange={handleChangeTransaksi}
                     className="appearance-none"
                 />
-                <FormInput
+                <Form.Input
                     label="Tanggal"
                     name="tanggal"
                     type="date"

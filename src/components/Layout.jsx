@@ -53,15 +53,15 @@ const Layout = () => {
                 <h3 className="text-2xl font-medium">
                     Ringkasan Transaksi
                 </h3>
-                <div className="grid grid-cols-2 gap-3">
-                    <Button text="Pemasukan" onClick={openModal} />
-                    <Button text="Pengeluaran" />
+                <div className="">
+                    <Button text="Transaksi" onClick={openModal} />
+                    {/* <Button text="Pengeluaran" onClick={openModal} /> */}
                 </div>
             </div>
             {/* Isi Ringkasan */}
             <div className="w-full">
                 {transaksi.map((item, index) => (
-                    <Transaksi key={index} keperluan={item.keperluan} jumlah={item.jumlah} tanggal={item.tanggal}/>
+                    <Transaksi key={index} judul={item.judul} jenis={item.jenis} jumlah={item.jumlah} tanggal={item.tanggal}/>
                 ))}
                 
             </div>
@@ -72,12 +72,8 @@ const Layout = () => {
                     open={isOpen} onClose={closeModal} center
                 >
                     <ModalForm dataTransaksi={receiveDataTransaksi} />
-
                 </Modal>
             </div>
-
-
-            {/* <ModalForm isOpen={isOpen} closeModal={closeModal} afterOpenModal={afterOpenModal} /> */}
         </div>
     )
 }
