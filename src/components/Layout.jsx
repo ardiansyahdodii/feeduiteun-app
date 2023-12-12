@@ -1,26 +1,26 @@
-// import { useState } from "react";
+import { useState } from "react";
+import { Modal } from 'react-responsive-modal'
+import "react-responsive-modal/styles.css";
 import Button from "../elements/Button"
 import Card from "../elements/Card"
-// import ModalForm from "./ModalForm";
 import SisaUang from "./SisaUang";
 import Transaksi from "./Transaksi";
+import ModalForm from "./ModalForm";
+
 
 const Layout = () => {
 
-    // const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
 
     function openModal() {
         alert("DI KLIK")
+        setIsOpen(true);
     }
 
-    // function afterOpenModal() {
-    //     // references are now sync'd and can be accessed.
-    //     subtitle.style.color = '#f00';
-    // }
 
-    // function closeModal() {
-    //     setIsOpen(false);
-    // }
+    function closeModal() {
+        setIsOpen(false);
+    }
 
     return (
         <div className="flex flex-col justify-center items-center min-h-screen gap-3 mx-96 p-5">
@@ -55,6 +55,16 @@ const Layout = () => {
             </div>
 
             {/* Modal */}
+            <div>
+                <Modal
+                open={isOpen} onClose={closeModal} center
+            >
+                <ModalForm />
+
+            </Modal>
+            </div>
+            
+
             {/* <ModalForm isOpen={isOpen} closeModal={closeModal} afterOpenModal={afterOpenModal} /> */}
         </div>
     )

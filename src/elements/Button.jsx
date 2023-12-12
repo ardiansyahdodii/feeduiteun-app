@@ -1,11 +1,11 @@
 import { BsDashCircle, BsPlusCircle } from "react-icons/bs"
 
 const Button = (props) => {
-    const { text, onClick } = props
+    const { text, onClick, className } = props
 
     return (
         <button 
-        className={`${text === "Pemasukan" ? "bg-blue-500" : "bg-rose-500"} flex justify-center items-center h-10 px-3 rounded-lg space-x-2 `}
+        className={`${text === "Pemasukan" ? "bg-blue-500" : "bg-rose-500"} ${className} flex justify-center items-center h-10 px-3 rounded-lg space-x-2 `}
         onClick={onClick}
         >
             <div className="text-lg font-semibold">
