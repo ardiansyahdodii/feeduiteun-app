@@ -6,8 +6,8 @@ const Transaksi = (props) => {
     const { judul, jumlah, tanggal, jenis } = props
 
     return (
-        <div className="flex justify-between items-center mt-3">
-            <div className="flex space-x-3">
+        <div className="flex justify-between items-center mt-3 border-b-2">
+            <div className="flex space-x-3 p-2">
                 <div className={`${jenis === 'pemasukan' ? 'bg-blue-500' : 'bg-red-500'} flex justify-center items-center text-2xl p-3 rounded-lg`}>
                     {jenis === 'pemasukan' ? <BsWallet2 /> : <IoBagRemoveOutline />}
                 </div>
@@ -19,6 +19,7 @@ const Transaksi = (props) => {
                 </div>
             </div>
             <div className="text-xl font-bold">
+                {jenis === 'pemasukan' ? '+ ' : '- '}
                 {new Intl.NumberFormat('id-ID', {
                     style: 'currency',
                     currency: 'IDR',

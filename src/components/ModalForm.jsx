@@ -4,12 +4,12 @@ import Form from "../elements/Form"
 
 const ModalForm = (props) => {
 
-    const {dataTransaksi} = props
+    const {dataTransaksi, onClose} = props
 
     // const [transaksi, setTransaksi] = useState([])
     const [formData, setFormData] = useState({
         judul: "",
-        jumlah: "",
+        jumlah: 0,
         tanggal: "",
         jenis: "" || "pemasukan" || "pengeluaran",
     })
@@ -23,17 +23,18 @@ const ModalForm = (props) => {
 
     const handleSubmitTransaksi = (event) => {
         event.preventDefault()
-        if(formData.keperluan === ''|| formData.jumlah === '' || formData.tanggal === '' || formData.jenis === ''){
+        if(formData.judul === ''|| formData.jumlah === 0 || formData.tanggal === '' || formData.jenis === ''){
             alert('Isi semua Data')
         }else{
             dataTransaksi(transaksi => [...transaksi, formData])
             alert('berhasil menambahkan transaksi')
             setFormData({
                 judul: "",
-                jumlah: "",
+                jumlah: 0,
                 tanggal: "",
                 jenis: "",
             })
+            onClose()
         }     
     }
 

@@ -12,8 +12,8 @@ const Button = (props) => {
             <div className="text-lg font-semibold">
                 {text}
             </div>
-            <div className="rounded-full bg-white text-2xl">
-                {text === 'Transaksi' && <BsPlusCircle />}
+            <div className={`${text === "Tambah" ? "hidden" : "block"} rounded-full bg-white text-2xl`}>
+                <BsPlusCircle />
             </div>
         </button>
     )
