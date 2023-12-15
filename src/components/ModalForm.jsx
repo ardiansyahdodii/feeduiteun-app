@@ -11,7 +11,7 @@ const ModalForm = (props) => {
         judul: "",
         jumlah: 0,
         tanggal: "",
-        jenis: "" || "pemasukan" || "pengeluaran",
+        jenis: "pilih" || "pemasukan" || "pengeluaran",
     })
 
     const handleChangeTransaksi = (event) => {
